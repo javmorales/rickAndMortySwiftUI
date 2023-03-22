@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56921BFB29CAB6400020FA81 /* CourseQuery.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 56921BFA29CAB6400020FA81 /* CourseQuery.graphql */; };
+		56921BFE29CAB7310020FA81 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 56921BFD29CAB7310020FA81 /* schema.json */; };
 		F0DC60EC29CA467000FCB333 /* RickAndMortyAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DC60EB29CA467000FCB333 /* RickAndMortyAppApp.swift */; };
 		F0DC60EE29CA467000FCB333 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DC60ED29CA467000FCB333 /* ContentView.swift */; };
 		F0DC60F029CA467200FCB333 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0DC60EF29CA467200FCB333 /* Assets.xcassets */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		56921BFA29CAB6400020FA81 /* CourseQuery.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CourseQuery.graphql; sourceTree = "<group>"; };
+		56921BFD29CAB7310020FA81 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		F0DC60E829CA467000FCB333 /* RickAndMortyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMortyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0DC60EB29CA467000FCB333 /* RickAndMortyAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMortyAppApp.swift; sourceTree = "<group>"; };
 		F0DC60ED29CA467000FCB333 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -65,6 +69,8 @@
 		F0DC60EA29CA467000FCB333 /* RickAndMortyApp */ = {
 			isa = PBXGroup;
 			children = (
+				56921BFA29CAB6400020FA81 /* CourseQuery.graphql */,
+				56921BFD29CAB7310020FA81 /* schema.json */,
 				F0DC611029CA572900FCB333 /* Components */,
 				F0DC60EB29CA467000FCB333 /* RickAndMortyAppApp.swift */,
 				F0DC60ED29CA467000FCB333 /* ContentView.swift */,
@@ -102,6 +108,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0DC60F629CA467200FCB333 /* Build configuration list for PBXNativeTarget "RickAndMortyApp" */;
 			buildPhases = (
+				56921BFC29CAB6810020FA81 /* Generate Apollo GraphQL API */,
 				F0DC60E429CA467000FCB333 /* Sources */,
 				F0DC60E529CA467000FCB333 /* Frameworks */,
 				F0DC60E629CA467000FCB333 /* Resources */,
@@ -159,12 +166,35 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56921BFE29CAB7310020FA81 /* schema.json in Resources */,
 				F0DC60F329CA467200FCB333 /* Preview Assets.xcassets in Resources */,
 				F0DC60F029CA467200FCB333 /* Assets.xcassets in Resources */,
+				56921BFB29CAB6400020FA81 /* CourseQuery.graphql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		56921BFC29CAB6810020FA81 /* Generate Apollo GraphQL API */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Apollo GraphQL API";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://apollo-fullstack-tutorial.herokuapp.com/graphql\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F0DC60E429CA467000FCB333 /* Sources */ = {
@@ -313,8 +343,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -342,8 +372,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
