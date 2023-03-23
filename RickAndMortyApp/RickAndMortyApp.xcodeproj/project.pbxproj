@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		56921BFB29CAB6400020FA81 /* CourseQuery.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 56921BFA29CAB6400020FA81 /* CourseQuery.graphql */; };
 		56921BFE29CAB7310020FA81 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 56921BFD29CAB7310020FA81 /* schema.json */; };
+		F008347F29CBA76400D4B889 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008347E29CBA76400D4B889 /* API.swift */; };
+		F008348229CBA7F400D4B889 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008348129CBA7F400D4B889 /* Network.swift */; };
+		F008348629CBA89700D4B889 /* CourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008348529CBA89700D4B889 /* CourseViewModel.swift */; };
+		F008348829CBAB9200D4B889 /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008348729CBAB9200D4B889 /* CourseModel.swift */; };
 		F0DC60EC29CA467000FCB333 /* RickAndMortyAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DC60EB29CA467000FCB333 /* RickAndMortyAppApp.swift */; };
 		F0DC60EE29CA467000FCB333 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DC60ED29CA467000FCB333 /* ContentView.swift */; };
 		F0DC60F029CA467200FCB333 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0DC60EF29CA467200FCB333 /* Assets.xcassets */; };
@@ -25,6 +29,10 @@
 /* Begin PBXFileReference section */
 		56921BFA29CAB6400020FA81 /* CourseQuery.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CourseQuery.graphql; sourceTree = "<group>"; };
 		56921BFD29CAB7310020FA81 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		F008347E29CBA76400D4B889 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		F008348129CBA7F400D4B889 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		F008348529CBA89700D4B889 /* CourseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewModel.swift; sourceTree = "<group>"; };
+		F008348729CBAB9200D4B889 /* CourseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseModel.swift; sourceTree = "<group>"; };
 		F0DC60E829CA467000FCB333 /* RickAndMortyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMortyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0DC60EB29CA467000FCB333 /* RickAndMortyAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMortyAppApp.swift; sourceTree = "<group>"; };
 		F0DC60ED29CA467000FCB333 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -50,6 +58,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F008348029CBA7E700D4B889 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				F008348129CBA7F400D4B889 /* Network.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		F008348329CBA88200D4B889 /* Course */ = {
+			isa = PBXGroup;
+			children = (
+				F008348529CBA89700D4B889 /* CourseViewModel.swift */,
+				F008348729CBAB9200D4B889 /* CourseModel.swift */,
+			);
+			path = Course;
+			sourceTree = "<group>";
+		};
 		F0DC60DF29CA467000FCB333 = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +94,9 @@
 		F0DC60EA29CA467000FCB333 /* RickAndMortyApp */ = {
 			isa = PBXGroup;
 			children = (
+				F008348329CBA88200D4B889 /* Course */,
+				F008348029CBA7E700D4B889 /* Network */,
+				F008347E29CBA76400D4B889 /* API.swift */,
 				56921BFA29CAB6400020FA81 /* CourseQuery.graphql */,
 				56921BFD29CAB7310020FA81 /* schema.json */,
 				F0DC611029CA572900FCB333 /* Components */,
@@ -178,7 +206,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		56921BFC29CAB6810020FA81 /* Generate Apollo GraphQL API */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -190,9 +218,9 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://apollo-fullstack-tutorial.herokuapp.com/graphql\"\n";
+			shellScript = "# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API.swift\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -201,13 +229,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F008348629CBA89700D4B889 /* CourseViewModel.swift in Sources */,
+				F008348229CBA7F400D4B889 /* Network.swift in Sources */,
 				F0DC611629CA5A3F00FCB333 /* CourseList.swift in Sources */,
 				F0DC60EE29CA467000FCB333 /* ContentView.swift in Sources */,
 				F0DC610D29CA522A00FCB333 /* HomeView.swift in Sources */,
 				F0DC611229CA574000FCB333 /* FeaturedCourseList.swift in Sources */,
+				F008348829CBAB9200D4B889 /* CourseModel.swift in Sources */,
 				F0DC60EC29CA467000FCB333 /* RickAndMortyAppApp.swift in Sources */,
 				F0DC611429CA587500FCB333 /* CourseCard.swift in Sources */,
 				F0DC610B29CA504300FCB333 /* DataTitle.swift in Sources */,
+				F008347F29CBA76400D4B889 /* API.swift in Sources */,
 				F0DC610F29CA529300FCB333 /* FeaturedCourseCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,8 +447,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apollographql/apollo-ios";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = exactVersion;
+				version = 0.43.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

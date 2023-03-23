@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var courseViewModel: CourseViewModel
     var body: some View {
         ZStack {
             ScrollView {
@@ -41,5 +42,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .environmentObject(CourseViewModel())
     }
 }
